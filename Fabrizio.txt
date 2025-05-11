@@ -1,4 +1,4 @@
-i file sono stati scaricati de Manus dopo che ho aperto VS Code dentro Manus
+i file sono stati scaricati da Manus dopo che ho aperto VS Code dentro Manus
 
 ho scaricato:
 tutta la cartella "public"
@@ -7,16 +7,18 @@ tutti i file nella root del progetto (dove risiede "package.json")
 
 per compilare
 installa node.js
-installa pnpm (non npn che è già installato con node.js)
-copia tutto in un cartella nuova
+installa pnpm (non npn che è già installato con node.js) "npm install -g pnpm@latest-10"
+copia tutto in un cartella nuova: git da "https://github.com/fabriziomassari/coach_app_demo"
 apri una shell nella nuova cartella creata
 
-esegui pnpm installa per scaricare tutte le dipendenze
+esegui "pnpm install" per scaricare tutte le dipendenze
 
 esegui "pnpm dev" per provare il progetto nell'ambiente di sviluppo
 
-esegui "pnpm build" per compilare 
+esegui "pnpm build" per compilare, ma per ora non serve a niente finchè non capisco come funziona Next.js (ci sono file statici e file dimanici dal server)
 
 capisci bene coma funziona il deploy per Node.js, la versiona "statica" di questa app non è "ancora" possibile.
+
+
 
 
