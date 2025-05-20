@@ -13,6 +13,11 @@ apri una shell nella nuova cartella creata
 
 esegui "pnpm install" per scaricare tutte le dipendenze
 
+esegui "pnpm update" per aggiornare tutte le dipendenze
+
+esegui "pnpm rebuild better_sqlite3" per compilare la libreria sqlite3
+esegui "pnpm rebuild" per compilare tutto
+
 esegui "pnpm dev" per provare il progetto nell'ambiente di sviluppo
 
 esegui "pnpm build" per compilare, ma per ora non serve a niente finchè non capisco come funziona Next.js (ci sono file statici e file dimanici dal server)

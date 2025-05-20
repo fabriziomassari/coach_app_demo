@@ -1,8 +1,9 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAppContext, Cliente } from '@/lib/context';
+import { Cliente } from '@/lib/context';
 import MainLayout from '@/components/ui/main-layout';
 import Card from '@/components/ui/card';
 import Button from '@/components/ui/button';
@@ -11,16 +12,22 @@ import Input from '@/components/ui/input';
 import { FiPlus, FiSearch, FiFilter, FiUser, FiUsers, FiMail, FiPhone, FiEdit, FiFileText } from 'react-icons/fi';
 
 export default function ClientiPage() {
-  const { isAuthenticated, clienti, contratti } = useAppContext();
   const router = useRouter();
+  const [clienti, setClienti] = useState<Cliente[]>([]);
   const [filtro, setFiltro] = useState('');
   const [mostraSoloAttivi, setMostraSoloAttivi] = useState(true);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      router.push('/login');
-    }
-  }, [isAuthenticated, router]);
+    // Carica i clienti tramite API
+    const loadClienti = async () => {
+      const response = await fetch('/api/clienti');
+      if (response.ok) {
+        const clientiDb = await response.json();
+        setClienti(clientiDb);
+      }
+    };
+    loadClienti();
+  }, []);
 
   // Filtra i clienti in base al testo di ricerca e allo stato attivo
   const clientiFiltrati = clienti.filter(cliente => {
@@ -34,9 +41,20 @@ export default function ClientiPage() {
   const aziende = clientiFiltrati.filter(cliente => cliente.tipo === 'azienda');
   const individuali = clientiFiltrati.filter(cliente => cliente.tipo === 'individuale');
 
-  // Funzione per contare i contratti attivi per cliente
-  const contaContrattiAttivi = (clienteId: number) => {
-    return contratti.filter(c => c.clienteId === clienteId && c.stato === 'attivo' && c.attivo).length;
+  // TODO: Implementare la chiamata API per contare i contratti attivi
+  const [contrattiAttivi, setContrattiAttivi] = useState<{[key: number]: number}>({});
+
+  useEffect(() => {
+    // Per ora impostiamo tutti i contratti attivi a 0
+    const nuoviContrattiAttivi: {[key: number]: number} = {};
+    clienti.forEach(cliente => {
+      nuoviContrattiAttivi[cliente.id] = 0;
+    });
+    setContrattiAttivi(nuoviContrattiAttivi);
+  }, [clienti]);
+
+  const getContrattiAttivi = (clienteId: number) => {
+    return contrattiAttivi[clienteId] || 0;
   };
 
   const handleNuovoCliente = () => {
@@ -123,7 +141,7 @@ export default function ClientiPage() {
                       <td className="py-3 px-4">
                         <div className="flex items-center">
                           <FiFileText className="mr-2 h-4 w-4 text-muted-foreground" />
-                          {contaContrattiAttivi(azienda.id)}
+                          {getContrattiAttivi(azienda.id)}
                         </div>
                       </td>
                       <td className="py-3 px-4">
@@ -183,7 +201,7 @@ export default function ClientiPage() {
                     </div>
                     <div className="flex items-center">
                       <FiFileText className="h-4 w-4 text-muted-foreground mr-2" />
-                      <span>Contratti attivi: {contaContrattiAttivi(cliente.id)}</span>
+                      <span>Contratti attivi: {getContrattiAttivi(cliente.id)}</span>
                     </div>
                   </div>
                   <div className="mt-4 flex justify-between items-center">
