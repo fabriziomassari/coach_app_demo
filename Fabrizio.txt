@@ -6,7 +6,13 @@ tutta la cartella "src"
 tutti i file nella root del progetto (dove risiede "package.json")
 
 per compilare
-installa node.js
+
+Assicurati di avere installato gli strumenti di build come indicato nelle istruzioni di deploy Windows:
+installa:
+    Node.js (versione 16 o superiore)
+    Python (versione 3.x)
+    Visual Studio Build Tools con il carico di lavoro "Sviluppo di applicazioni desktop con C++"
+
 installa pnpm (non npn che è già installato con node.js) "npm install -g pnpm@latest-10"
 copia tutto in un cartella nuova: git da "https://github.com/fabriziomassari/coach_app_demo"
 apri una shell nella nuova cartella creata
@@ -15,9 +21,7 @@ esegui "pnpm install" per scaricare tutte le dipendenze
 
 esegui "pnpm update" per aggiornare tutte le dipendenze
 
-esegui "pnpm rebuild better_sqlite3" per compilare la libreria sqlite3
-esegui "npm rebuild better-sqlite3" per compilare la libreria sqlite3         
-esegui "pnpm rebuild" per compilare tutto
+esegui "npm rebuild better-sqlite3" per compilare la libreria sqlite3 (non pnpm)
 
 esegui "pnpm dev" per provare il progetto nell'ambiente di sviluppo
 
