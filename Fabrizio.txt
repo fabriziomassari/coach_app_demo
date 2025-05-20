@@ -16,6 +16,7 @@ esegui "pnpm install" per scaricare tutte le dipendenze
 esegui "pnpm update" per aggiornare tutte le dipendenze
 
 esegui "pnpm rebuild better_sqlite3" per compilare la libreria sqlite3
+esegui "npm rebuild better-sqlite3" per compilare la libreria sqlite3         
 esegui "pnpm rebuild" per compilare tutto
 
 esegui "pnpm dev" per provare il progetto nell'ambiente di sviluppo
