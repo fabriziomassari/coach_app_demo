@@ -1,3 +1,4 @@
+Progetto di prova generato da Manus
 i file sono stati scaricati da Manus dopo che ho aperto VS Code dentro Manus
 
 ho scaricato:
